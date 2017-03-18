@@ -25,12 +25,13 @@ SECRET_KEY = '(_aggam^20@%89cxi5)_i3f8i@l-lmc(s+c3xtp5!$y+)8$t2v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,6 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'ferregistraDB':    {
+        'ENGINE' : 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'ferregistraDB.db')
     }
 }
 
