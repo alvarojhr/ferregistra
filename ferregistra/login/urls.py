@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 
-urtlpatterns = [
-        url(r'^$', views.hello_world, name ='hello')
+urlpatterns = [
+        url(r'^$', views.index, name = 'index'),
+        url(r'^login/', views.login, name = 'login')
 ]
