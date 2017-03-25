@@ -27,3 +27,4 @@ mapped 72768 bytes (71 KB) for 1 cores
 WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0xe49280 pid: 12893 (default app)
 *** uWSGI is running in multiple interpreter mode ***
 spawned uWSGI worker 1 (and the only) (pid: 12893, cores: 1)
+Gracefully killing worker 1 (pid: 12893)...
