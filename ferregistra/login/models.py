@@ -23,7 +23,7 @@ class Empleado(models.Model):
     password = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.nombre
+        return str(self.cedula)
 
 class Cliente(models.Model):
     nit = models.IntegerField()

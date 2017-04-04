@@ -15,9 +15,9 @@
           top:50%;
           left:50%;
           transform: translate(-50%, -50%);
-          display: inline-flex; 
+          display: inline-flex;
         }
-        .backbox{  
+        .backbox{
           background-color: #F1C40F;
           width: 50%;
           height: 90%;
@@ -96,9 +96,9 @@
         }
 
         .inputbox{
-          margin-top:30px; 
+          margin-top:30px;
         }
-        .login input, 
+        .login input,
         .signup input {
           display: block;
           width: 100%;
@@ -159,10 +159,13 @@
     <div class="frontbox">
       <div class="login">
         <div class="inputbox">
-          <input type="text" name="user" placeholder="USER">
-          <input type="password" name="password" placeholder="PASSWORD">
+          <form action='' method="POST"> {% csrf_token %}
+            <input type="text" name="user" placeholder="USER">
+            <input type="password" name="password" placeholder="PASSWORD">
+            <input type = "submit" name= "Entrar" >Entrar</button>
+        </form>
         </div>
-        <button>Entrar</button>
+
       </div>
     </div>
     <!-- frontbox -->

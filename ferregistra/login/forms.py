@@ -1,3 +1,7 @@
 from django import forms
+from .models import Empleado
 
-from .models import 
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
+        fields = ('cedula','password')
