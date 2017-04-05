@@ -11,7 +11,10 @@ def index(request):
     return render(request, 'index.html')
 
 def informe(request):
-    return render(request, 'informes/informe.html')
+    return render(request, 'informes/index.html')
+
+def products(request):
+    return render(request, 'informes/products.html')
 
 def login(request):
     if request.POST:
