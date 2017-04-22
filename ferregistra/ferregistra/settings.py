@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,15 +31,29 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
-]
+)
+
+LOCAL_APPS = (
+    'accounts',
+    'producto',
+    'factura',
+)
+
+THIRD_PARTY_APPS = (
+    'easy_thumbnails',
+    'guardian',
+    'userena',
+)
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,8 +91,12 @@ WSGI_APPLICATION = 'ferregistra.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test', #nombre de la base de datos
+        'USER': 'postgres',
+        'PASSWORD': 'Redes852..',
+        'HOST': 'localhost',
+        'PORT': 5432,
     },
 }
 
@@ -103,8 +122,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
+#Authentication Backends
 
-LANGUAGE_CODE = 'en-us'
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'UTC'
 
@@ -123,3 +150,19 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+ANONYMOUS_USER_ID = -1
+
+AUTH_PROFILE_MODULE = "accounts.UserProfile"
+
+SITE_ID = 1
+
+USERENA_SIGNIN_REDIRECT_URL = "/login-handler/"
+
+LOGIN_URL = reverse_lazy("login")
+
+LOGOUT_URL = reverse_lazy("logout")
+
+USERENA_ACTIVATION_REQUIRED = False
+
+USERENA_SIGNIN_AFTER_SIGNUP = True
