@@ -6,6 +6,13 @@ from producto.models import Producto
 from factura.models import Cliente, CuentaPorCobrar, Factura,DetalleFactura
 
 # Create your views here.
+def index_view(request):
+    facturas = Factura.objects.all()
+    template_name = 'informes/index.html'
+    contexto = {'index_icon': True}
+    
+    return render(request, template_name, contexto)
+
 def caja_view(request):
     if request.method == 'POST':
         form = ventaForm(request.POST)

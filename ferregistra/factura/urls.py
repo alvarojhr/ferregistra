@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
-from .views import caja_view, tablaClientes_view, tablaProductos_view, tablaCuentasPorCobrar_view, tablaFacturas_view, detallesFactura_view
+from .views import caja_view, tablaClientes_view, tablaProductos_view, tablaCuentasPorCobrar_view, tablaFacturas_view, detallesFactura_view, index_view
 
 urlpatterns = [
+    url(r'^dashboard/', login_required(index_view), name='index'),
     url(r'^caja/', login_required(caja_view), name='caja'),
     url(r'^clientes/$', login_required(tablaClientes_view), name="tabla_clientes"),
     url(r'^productos/$', login_required(tablaProductos_view), name="tabla_productos"),
