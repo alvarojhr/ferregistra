@@ -92,10 +92,10 @@ WSGI_APPLICATION = 'ferregistra.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test', #nombre de la base de datos
-        'USER': 'postgres',
+        'NAME': 'BDBucaramanga', #nombre de la base de datos
+        'USER': 'ferregistra',
         'PASSWORD': 'Redes852..',
-        'HOST': 'localhost',
+        'HOST': '2800:e0:4001:1::4',
         'PORT': 5432,
     },
 }
