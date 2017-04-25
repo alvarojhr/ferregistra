@@ -49,7 +49,7 @@
                           <br>
                           <b>Fecha de pago:</b> {{ factura.fecha }}
                           <br>
-                          <b>Pagada:</b> {% if factura.estado %}No{%else%}Si{%endif%}
+                          <b>Credito:</b> {% if factura.estado %}No{%else%}Si{%endif%}
                         </div>
                         <!-- /.col -->
                       </div>
@@ -120,7 +120,7 @@
                       <div class="row no-print">
                         <div class="col-xs-12">
                           <button class="btn btn-success pull-right" onclick="window.print();"><i class="fa fa-print"></i>Print</button>
-                          <button class="btn btn-primary pull-right" style="margin-right: 5px;" {% if factura.estado %}disabled="disabled"{%endif%} ><i class="fa fa-download"></i> Detalle cuenta por cobrar</button>
+                          <button class="btn btn-primary pull-right" style="margin-right: 5px;" {% if factura.estado %}disabled="disabled"{%endif%} ><i class="fa fa-briefcase"></i> Detalle cuenta por cobrar</button>
                         </div>
                       </div>
                     </section>
