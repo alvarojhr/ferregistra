@@ -98,6 +98,22 @@ DATABASES = {
         'HOST': '2800:e0:4001:1::4',
         'PORT': 5432,
     },
+    'BDCali': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'BDCali', #nombre de la base de datos
+        'USER': 'ferregistra',
+        'PASSWORD': 'Redes852..',
+        'HOST': '2800:e0:4001:2::4',
+        'PORT': 5432,
+    },
+    'BDMedellin': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'BDMedellin', #nombre de la base de datos
+        'USER': 'ferregistra',
+        'PASSWORD': 'Redes852..',
+        'HOST': '2800:e0:4001:3::4',
+        'PORT': 5432,
+    },
 }
 
 
