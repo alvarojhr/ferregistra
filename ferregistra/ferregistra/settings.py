@@ -91,13 +91,30 @@ WSGI_APPLICATION = 'ferregistra.wsgi.application'
 
 DATABASES = {
     'default': {
+        'NAME': 'test', #nombre de la base de datos
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'BDBucaramanga', #nombre de la base de datos
-        'USER': 'ferregistra',
+        'USER': 'postgres',
         'PASSWORD': 'Redes852..',
-        'HOST': '2800:e0:4001:1::4',
+        'HOST': 'localhost',
         'PORT': 5432,
     },
+    
+#    'cali': {
+#        'NAME': 'dbCali', #nombre de la base de datos
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'USER': 'postgres',
+#        'PASSWORD': 'Redes852..',
+#        'HOST': 'localhost',
+#        'PORT': 5432,
+#    },
+#    'bga': {
+#        'NAME': 'dbmedallo', #nombre de la base de datos
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'USER': 'postgres',
+#        'PASSWORD': 'Redes852..',
+#        'HOST': 'localhost',
+#        'PORT': 5432,
+#    },
 }
 
 
