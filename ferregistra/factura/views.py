@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.utils import timezone
+from django.http import HttpResponseRedirect
 
 from factura.forms import ventaForm
 from producto.models import Producto
@@ -17,12 +19,24 @@ def caja_view(request):
     if request.method == 'POST':
         form = ventaForm(request.POST)
         if form.is_valid():
+            factura = form.save(commit=False)
+            factura.subtotal = 0
+            factura.ivaTotal = 0
+            factura.fecha = timezone.now()
             form.save()
-        return redirect('factura:caja') #redirect a la url de nombre 'caja'
+            url = "/caja/" + str(factura.id) + "/"
+        return HttpResponseRedirect(url)
     else:
         form = ventaForm()
     
-    return render(request, 'caja_form.html', {'form':form})
+    return render(request, 'caja_form.html', {'form':form, 'caja_icon': True})
+
+def cajaDetalle_view(request):
+    facturas = Factura.objects.all()
+    template_name = 'informes/index.html'
+    contexto = {'index_icon': True}
+    
+    return render(request, template_name, contexto)
 
 def tablaCuentasPorCobrar_view(request):
     CuentasPorCobrar = CuentaPorCobrar.objects.all()
