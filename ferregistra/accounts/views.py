@@ -90,6 +90,6 @@ def signin(request, auth_form=AuthenticationForm,
 def login_handler(request):
 	if request.method == "GET":
 		if request.user.user_profile.tipo_usuario == "admin":
-			return HttpResponseRedirect("/index/")
+			return HttpResponseRedirect("/dashboard/")
 		else:
 			return HttpResponseRedirect("/caja/")
