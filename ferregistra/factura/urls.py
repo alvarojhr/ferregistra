@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .views import caja_view, tablaClientes_view, tablaProductos_view, tablaCuentasPorCobrar_view, tablaFacturas_view, detallesFactura_view, index_view, cajaDetalle_view
 
 urlpatterns = [
-    url(r'^dashboard/', login_required(index_view), name='index'),
+    url(r'^dashboard/$', login_required(index_view), name='index'),
     url(r'^caja/', login_required(caja_view), name='caja'),
     url(r'^caja/(?P<factura_id>[0-9])/$', login_required(cajaDetalle_view), name='cajaDetalle'),
     url(r'^clientes/$', login_required(tablaClientes_view), name="tabla_clientes"),

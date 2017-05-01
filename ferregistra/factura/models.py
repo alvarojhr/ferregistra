@@ -2,7 +2,7 @@ from django.db import models
 from producto.models import Producto
 from accounts.models import UserProfile
 
-# Create your models here.    
+# Create your models here.
 class Cargo(models.Model):
     nombre = models.CharField(max_length=30)
 
@@ -18,12 +18,10 @@ class Cliente(models.Model):
 
     def __str__(self):
         return str(self.nit) + " - " + self.nombreCompania
-    
+
 class Sede(models.Model):
     nombre = models.CharField(max_length=30)
     ciudad = models.CharField(max_length=30)
-    cedula = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return self.nombre
@@ -35,14 +33,14 @@ class Factura(models.Model):
     subtotal = models.FloatField()
     ivaTotal = models.FloatField()
     estado= models.BooleanField()
-    
+
     def total(self):
         total =  self.subtotal + (self.subtotal*(self.ivaTotal/100))
         return total
 
     def __str__(self):
         return str(self.id)
-    
+
 class DetalleFactura(models.Model):
     idFactura = models.ForeignKey(Factura, on_delete=models.CASCADE)
     idProducto = models.ForeignKey(Producto, on_delete=models.CASCADE)

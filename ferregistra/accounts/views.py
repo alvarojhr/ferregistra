@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.shortcuts import render
+from ipware.ip import get_trusted_ip
 from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.contrib.auth.models import User
 from userena.decorators import secure_required
@@ -87,9 +88,26 @@ def signin(request, auth_form=AuthenticationForm,
     })
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
+
+def get_client_ip(request):
+    r = ''
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    if str(ip.split(':')[3]) == '1':
+        r = '/bucaramanga'
+    if str(ip.split(':')[3]) == '2':
+        r = '/cali'
+    if str(ip.split(':')[3]) == '3':
+        r = '/medellin'
+    return r
+
 def login_handler(request):
-	if request.method == "GET":
-		if request.user.user_profile.tipo_usuario == "admin":
-			return HttpResponseRedirect("/dashboard/")
-		else:
-			return HttpResponseRedirect("/caja/")
+    if request.method == "GET":
+        s = get_client_ip(request)
+        if request.user.user_profile.tipo_usuario == "admin":
+            return HttpResponseRedirect(s+"/dashboard/")
+        else:
+            return HttpResponseRedirect(s+"/caja/")

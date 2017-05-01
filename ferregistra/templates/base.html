@@ -19,8 +19,8 @@
     <!-- bootstrap-daterangepicker -->
     <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
     <!-- Template css -->
-    {% block templateCss %} 
-    
+    {% block templateCss %}
+
     {% endblock %}
     <!-- Custom Theme Style -->
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
@@ -58,18 +58,18 @@
                 <ul class="nav side-menu">
                 <!-- iconos del admin -->
                  {% if request.user.user_profile.tipo_usuario == 'admin' %}
-                  <li {% if index_icon %} class='active'{% endif %}><a href="/dashboard/"><i class="fa fa-bar-chart-o"></i> Inicio</a>
+                  <li {% if index_icon %} class='active'{% endif %}><a href="/{{sede}}/dashboard/"><i class="fa fa-bar-chart-o"></i> Inicio</a>
                   </li>
-                  <li {% if CuentasPorCobrar_icon %} class='active'{% endif %}><a href="/cuentas-pendientes/"><i class="fa fa-briefcase"></i> Cuentas por cobrar</a>
+                  <li {% if CuentasPorCobrar_icon %} class='active'{% endif %}><a href="/{{sede}}/cuentas-pendientes/"><i class="fa fa-briefcase"></i> Cuentas por cobrar</a>
                   </li>
-                  <li {% if clientes_icon %}class='active'{% endif %}><a href="/clientes"/><i class="fa fa-user"></i> Clientes</a>
+                  <li {% if clientes_icon %}class='active'{% endif %}><a href="/{{sede}}/clientes"/><i class="fa fa-user"></i> Clientes</a>
                   </li>
                   {% endif %}
                   <!-- iconos generales -->
-                  <li {% if productos_icon %}class='active'{% endif %}><a href="/productos/"><i class="fa fa-paper-plane-o"></i> Productos</a>
+                  <li {% if productos_icon %}class='active'{% endif %}><a href="/{{sede}}/productos/"><i class="fa fa-paper-plane-o"></i> Productos</a>
                   </li>
-                  <li {% if caja_icon %}class='active'{% endif %}><a href="/caja/"><i class="fa fa-shopping-cart"></i> Caja</a></li>
-                  <li {% if facturas_icon %}class='active'{% endif %}><a href="/facturas/"><i class="fa fa-list-ul" aria-hidden="true"></i> Facturas</a>
+                  <li {% if caja_icon %}class='active'{% endif %}><a href="/{{sede}}/caja/"><i class="fa fa-shopping-cart"></i> Caja</a></li>
+                  <li {% if facturas_icon %}class='active'{% endif %}><a href="/{{sede}}/facturas/"><i class="fa fa-list-ul" aria-hidden="true"></i> Facturas</a>
                   </li>
                 </ul>
               </div>
@@ -89,9 +89,10 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
+
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">{{request.user.first_name}} {{request.user.last_name}} 
+                    <img src="images/img.jpg" alt="">{{request.user.first_name}} {{request.user.last_name}}
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -106,11 +107,23 @@
         <!-- /top navigation -->
 
         <!-- page content -->
+        {% if lugar %}
         <div class="right_col" role="main">
-          
+          <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{sede}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="/bucaramanga/{{lugar}}">Bucaramanga</a></li>
+                <li><a href="/medellin/{{lugar}}">Medellin</a></li>
+                <li><a href="/cali/{{lugar}}">cali</a></li>
+              </ul>
+          </div>
+          {% endif %}
             {% block content %}
-            
-            
+
+
             {% endblock %}
           </div>
         </div>
@@ -123,7 +136,7 @@
           <div class="pull-right">
             Ferregistra - Hecho con amor <i class="fa fa-heart fa-6" aria-hidden="true" style="
     color: #e16666;
-"></i> 
+"></i>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -1,4 +1,4 @@
-"""ferregistra URL Configuration
+''"""ferregistra URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -23,5 +23,5 @@ urlpatterns = [
     #url(r'^', include('producto.urls', namespace = "producto")),
     url(r'^', include('accounts.urls')),
     url(r'^userena/', include('userena.urls')),
-    url(r'^', include('factura.urls', namespace = "factura")),
+    url(r'^(?P<sede>[a-z]+)/', include('factura.urls', namespace = "factura")),
 ]
